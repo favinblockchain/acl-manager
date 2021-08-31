@@ -27,14 +27,30 @@
                     @slot('cards')
                         @component('components.collapse-card' , ['id' => 'role_index', 'show' => 'show', 'title' => 'لیست نقش‌ها'])
                             @slot('body')
-                                @component('components.collapse-search')
+                                @component('components.collapse-search', ['show' => $show_filter])
                                     @slot('form')
                                         <form class="clearfix">
-                                            <div class="form-group">
-                                                <label for="text-name-input">نام کاربر</label>
-                                                <input type="text" class="form-control" id="text-name-input" placeholder="نام کاربر">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="name">نام</label>
+                                                        <input type="text" class="form-control" id="name" name="name"
+                                                               value="{{ request('name') }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="display_name">برچسب</label>
+                                                        <input type="text" class="form-control" id="display_name" name="display_name"
+                                                               value="{{ request('display_name') }}">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary float-left">جستجو</button>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-primary float-left">جستجو</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     @endslot
                                 @endcomponent

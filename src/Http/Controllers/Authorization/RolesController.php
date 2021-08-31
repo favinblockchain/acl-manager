@@ -19,11 +19,22 @@ class RolesController
         $this->permissionModel = Config::get('laratrust.models.permission');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $show_filter = false;
+        $roles = $this->rolesModel::withCount('permissions');
+        if ($request->has('name') && $request->name != ''){
+            $roles = $roles->whereRaw("name like ?", ['%'. $request->name .'%']);
+            $show_filter = 'true';
+        }
+        if ($request->has('display_name') && $request->display_name != ''){
+            $roles = $roles->whereRaw("display_name like ?", ['%'. $request->display_name .'%']);
+            $show_filter = 'true';
+        }
+        $roles = $roles->paginate(10);
         return View::make('vendor.AclManager.authorization.roles.index', [
-            'roles' => $this->rolesModel::withCount('permissions')
-                ->paginate(10),
+            'roles' => $roles,
+            'show_filter' => $show_filter
         ]);
     }
 

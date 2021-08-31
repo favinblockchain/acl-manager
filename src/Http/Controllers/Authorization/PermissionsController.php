@@ -17,10 +17,22 @@ class PermissionsController
         $this->permissionModel = Config::get('laratrust.models.permission');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $show_filter = false;
+        $permissions = $this->permissionModel::query();
+        if ($request->has('name') && $request->name != ''){
+            $permissions = $permissions->whereRaw("name like ?", ['%'. $request->name .'%']);
+            $show_filter = 'true';
+        }
+        if ($request->has('display_name') && $request->display_name != ''){
+            $permissions = $permissions->whereRaw("display_name like ?", ['%'. $request->display_name .'%']);
+            $show_filter = 'true';
+        }
+        $permissions = $permissions->paginate(10);
         return View::make('vendor.AclManager.authorization.permissions.index', [
-            'permissions' => $this->permissionModel::paginate(10),
+            'permissions' => $permissions,
+            'show_filter' => $show_filter
         ]);
     }
 
