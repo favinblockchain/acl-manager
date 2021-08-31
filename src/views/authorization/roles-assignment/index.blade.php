@@ -9,7 +9,12 @@
     @endslot
 
     @slot('breadcrumb')
-        <li class="breadcrumb-item"> لیست کاربران </li>
+        <li class="breadcrumb-item">لیست کاربران</li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('panel') }}">
+                <i class="fa fa-home fa-lg"></i>
+            </a>
+        </li>
     @endslot
 
     @slot('content')

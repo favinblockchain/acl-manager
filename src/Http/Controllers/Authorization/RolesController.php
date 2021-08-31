@@ -23,7 +23,7 @@ class RolesController
     {
         return View::make('vendor.AclManager.authorization.roles.index', [
             'roles' => $this->rolesModel::withCount('permissions')
-                ->simplePaginate(10),
+                ->paginate(10),
         ]);
     }
 

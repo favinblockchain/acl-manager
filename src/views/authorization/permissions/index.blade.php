@@ -9,8 +9,15 @@
     @endslot
 
     @slot('breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('roles-assignment.index') }}">سطوح دسترسی</a></li>
         <li class="breadcrumb-item">دسترسی‌ها</li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('roles-assignment.index') }}">سطوح دسترسی</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('panel') }}">
+                <i class="fa fa-home fa-lg"></i>
+            </a>
+        </li>
     @endslot
 
     @slot('content')

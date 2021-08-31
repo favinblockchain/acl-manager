@@ -20,7 +20,7 @@ class PermissionsController
     public function index()
     {
         return View::make('vendor.AclManager.authorization.permissions.index', [
-            'permissions' => $this->permissionModel::simplePaginate(10),
+            'permissions' => $this->permissionModel::paginate(10),
         ]);
     }
 
