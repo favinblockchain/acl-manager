@@ -123,7 +123,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="6" class="text-center">موردی برای نمایش وجود ندارد.</td>
+                                                <td colspan="7" class="text-center">موردی برای نمایش وجود ندارد.</td>
                                             </tr>
                                         @endforelse
                                     @endslot
