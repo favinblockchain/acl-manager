@@ -47,6 +47,10 @@ or shorten tag :
 <x-acl-menu />
 ```
 
+## Config options
+
+You can set custom permissions for each section of this package. make sure that you already specified permissions in a seeder.
+
 ## ChangeLog
 
 [See ChangeLog](https://github.com/sinarajabpour1998/acl-manager/wiki/ChangeLog)

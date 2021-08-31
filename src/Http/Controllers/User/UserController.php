@@ -57,29 +57,6 @@ class UserController extends Controller
     {
 
     }
-    public function searchAjax( Request $request )
-    {
-        $users = User::whereRaw(
-            "CONCAT( first_name, ' ', last_name ) LIKE ?",
-            ["%{$request->term}%"]
-        )->take(100)
-            ->get(['id', 'first_name', 'last_name']);
-
-        $results = [];
-        if( !empty( $users ) ){
-            foreach( $users as $user ){
-                $result_item = new \stdClass();
-                $result_item->id = $user->id;
-                $result_item->text = "{$user->first_name} {$user->last_name}";
-                $results[] = $result_item;
-            }
-        }
-
-        $response = new \stdClass();
-        $response->results = $results;
-        echo json_encode( $response );
-        die();
-    }
 
     public function userResetPasswordForm(User $user) {
         return view('vendor.AclManager.users.user_reset_password', compact('user'));

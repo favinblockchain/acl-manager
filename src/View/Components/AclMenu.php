@@ -20,6 +20,6 @@ class AclMenu extends Component
 
     public function render()
     {
-        return view('aclManager::components.acl_menu');
+        return view('vendor.AclManager.components.acl_menu');
     }
 }
