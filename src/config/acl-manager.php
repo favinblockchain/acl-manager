@@ -15,6 +15,9 @@ return [
             'roles' => 'acl-manager-roles',
             'permissions' => 'acl-manager-permissions'
         ]
+    ],
+    'encryption' => [
+        'mobile_encryption' => true
     ]
 
 ];

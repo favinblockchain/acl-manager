@@ -38,11 +38,11 @@ class RolesAssignmentController
             $show_filter = 'true';
         }
         if ($request->has('email') && $request->email != ''){
-            $users = $users->whereRaw("email like ?", ['%'. $request->email . '%']);
+            $users = $users->where("email_key", makeHash($request->email));
             $show_filter = 'true';
         }
         if ($request->has('mobile') && $request->mobile != ''){
-            $users = $users->whereRaw("mobile like ?", ['%'. $request->mobile . '%']);
+            $users = $users->where("mobile_key", makeHash($request->mobile));
             $show_filter = 'true';
         }
         if ($request->has('role') && $request->role != ''){

@@ -20,11 +20,15 @@ class UserController extends Controller
 
     public function store(UserRequest $request , User $user)
     {
-        $user->fill($request->except('status'));
+        $user->fill($request->except('status', 'mobile', 'email'));
         if ($request->status == 'verified'){
             $user->email_verified_at = Carbon::now();
         }
-        $user->password = Hash::make( $request->password );
+        $user->mobile = encryptString($request->mobile);
+        $user->mobile_key = makeHash($request->mobile);
+        $user->email = encryptString($request->email);
+        $user->email_key = makeHash($request->email);
+        $user->password = Hash::make($request->password);
         $user->save();
         session()->flash('success', 'مشخصات کاربر با موفقیت ثبت شد.');
         return redirect()->route('users.edit', $user);
@@ -34,6 +38,8 @@ class UserController extends Controller
     {
         $provinces = Province::all();
         $status = 'verified';
+        $user->mobile = decryptString($user->mobile);
+        $user->email = decryptString($user->email);
         if (is_null($user->email_verified_at)){
             $status = 'not_verified';
         }
@@ -42,12 +48,19 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
-        $user->fill($request->except('status'));
+        dd($request->all());
+        $user->fill($request->except('status', 'mobile', 'email', 'nid', 'city', 'postal_code', 'address'));
         if ($request->status == 'verified'){
             $user->email_verified_at = Carbon::now();
         }else{
             $user->email_verified_at = null;
         }
+        $user->mobile = encryptString($request->mobile);
+        $user->mobile_key = makeHash($request->mobile);
+        $user->email = encryptString($request->email);
+        $user->email_key = makeHash($request->email);
+        // need to change nid column to string 256
+        $user->nid = encryptString($request->nid);
         $user->save();
         session()->flash('success', 'مشخصات کاربر با موفقیت ویرایش شد.');
         return redirect()->back();
