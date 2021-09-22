@@ -55,6 +55,7 @@ class UserController extends Controller
         }else{
             $user->email_verified_at = null;
         }
+        dd($this->userFieldsEncryption());
         $user->mobile = encryptString($request->mobile);
         $user->mobile_key = makeHash($request->mobile);
         $user->email = encryptString($request->email);
@@ -87,5 +88,15 @@ class UserController extends Controller
         session()->flash('success', 'کاربر گرامی رمز عبور با موفقیت بروزرسانی گردید.');
 
         return redirect()->back();
+    }
+
+    protected function userFieldsEncryption()
+    {
+        dd(config('acl-manager.encryption'));
+    }
+
+    protected function userFieldsFillArray()
+    {
+
     }
 }
