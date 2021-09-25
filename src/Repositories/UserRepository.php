@@ -7,8 +7,10 @@ class UserRepository
     public function userFieldsEncryption($user)
     {
         if (config('acl-manager.encryption.mobile_encryption')){
-            $user->mobile = encryptString($user->mobile);
-            $user->mobile_key = makeHash($user->mobile);
+            if (decryptString($user->mobile) == 'already_decrypted'){
+                $user->mobile = encryptString($user->mobile);
+                $user->mobile_key = makeHash($user->mobile);
+            }
         }else{
             $user->mobile = $user->mobile;
             $user->mobile_key = 'nan';
