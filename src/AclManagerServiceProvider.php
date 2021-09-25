@@ -2,6 +2,8 @@
 
 namespace Sinarajabpour1998\AclManager;
 
+use Sinarajabpour1998\AclManager\Facades\UserFacade;
+use Sinarajabpour1998\AclManager\Repositories\UserRepository;
 use Sinarajabpour1998\AclManager\View\Components\AclMenu;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +16,7 @@ class AclManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        UserFacade::shouldProxyTo(UserRepository::class);
     }
 
 

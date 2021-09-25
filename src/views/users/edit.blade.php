@@ -127,19 +127,6 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="nid">
-                                                <strong>{{ __('کد‌ملی') }}</strong>
-                                            </label>
-                                            <input id="nid" type="text" style="direction: ltr" class="form-control @error('nid') is-invalid @enderror"
-                                                   name="nid" value="{{ $user->nid ?? old('nid') }}" autocomplete="off">
-
-                                            @error('nid')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-4">
                                             <div class="form-group has-primary">
                                                 <span class="text-danger">*</span>
                                                 <label for="status">
@@ -156,37 +143,12 @@
                                                     </option>
                                                 </select>
                                                 @error('status')
-                                                <span class="invalid-feedback" role="alert">
+                                                    <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group has-primary">
-                                                <label for="province_id"><strong>{{ __('استان') }}</strong></label>
-                                                <select name="province_id" id="province_id"
-                                                        class="select2 form-control @error('province_id') is-invalid @enderror">
-                                                    <option value="">انتخاب نمایید</option>
-                                                    @forelse( $provinces as $province)
-                                                        <option value="{{ $province->id }}"
-                                                                @if( old('province_id', $user->province_id) == $province->id ) selected="selected" @endif>
-                                                            {{ $province->title }}</option>
-                                                    @empty
-                                                    @endforelse
-                                                </select>
-
-                                                @error('province_id')
-                                                <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="city"><strong>{{ __('شهر') }}</strong></label>
@@ -195,11 +157,14 @@
 
                                                 @error('city')
                                                 <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="row">
 
                                         <div class="col-md-4">
                                             <div class="form-group">

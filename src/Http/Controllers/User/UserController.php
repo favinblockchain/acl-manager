@@ -3,6 +3,7 @@
 namespace Sinarajabpour1998\AclManager\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Sinarajabpour1998\AclManager\Facades\UserFacade;
 use Sinarajabpour1998\AclManager\Http\Requests\UserRequest;
 use App\Models\Province;
 use App\Models\User;
@@ -14,21 +15,16 @@ class UserController extends Controller
 {
     public function create()
     {
-        $provinces = Province::all();
-        return view('vendor.AclManager.users.create', compact('provinces'));
+        //$provinces = Province::all();
+        return view('vendor.AclManager.users.create');
     }
 
     public function store(UserRequest $request , User $user)
     {
-        $user->fill($request->except('status', 'mobile', 'email'));
+        $user->fill($request->except('status'));
         if ($request->status == 'verified'){
             $user->email_verified_at = Carbon::now();
         }
-        $user->mobile = encryptString($request->mobile);
-        $user->mobile_key = makeHash($request->mobile);
-        $user->email = encryptString($request->email);
-        $user->email_key = makeHash($request->email);
-        $user->password = Hash::make($request->password);
         $user->save();
         session()->flash('success', 'مشخصات کاربر با موفقیت ثبت شد.');
         return redirect()->route('users.edit', $user);
@@ -36,32 +32,23 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $provinces = Province::all();
+        //$provinces = Province::all();
         $status = 'verified';
-        $user->mobile = decryptString($user->mobile);
-        $user->email = decryptString($user->email);
+        UserFacade::userFieldsDecryption($user);
         if (is_null($user->email_verified_at)){
             $status = 'not_verified';
         }
-        return view('vendor.AclManager.users.edit', compact('user', 'status', 'provinces'));
+        return view('vendor.AclManager.users.edit', compact('user', 'status'));
     }
 
     public function update(UserRequest $request, User $user)
     {
-        dd($request->all());
-        $user->fill($request->except('status', 'mobile', 'email', 'nid', 'city', 'postal_code', 'address'));
+        $user->fill($request->except('status'));
         if ($request->status == 'verified'){
             $user->email_verified_at = Carbon::now();
         }else{
             $user->email_verified_at = null;
         }
-        dd($this->userFieldsEncryption());
-        $user->mobile = encryptString($request->mobile);
-        $user->mobile_key = makeHash($request->mobile);
-        $user->email = encryptString($request->email);
-        $user->email_key = makeHash($request->email);
-        // need to change nid column to string 256
-        $user->nid = encryptString($request->nid);
         $user->save();
         session()->flash('success', 'مشخصات کاربر با موفقیت ویرایش شد.');
         return redirect()->back();
@@ -88,15 +75,5 @@ class UserController extends Controller
         session()->flash('success', 'کاربر گرامی رمز عبور با موفقیت بروزرسانی گردید.');
 
         return redirect()->back();
-    }
-
-    protected function userFieldsEncryption()
-    {
-        dd(config('acl-manager.encryption'));
-    }
-
-    protected function userFieldsFillArray()
-    {
-
     }
 }

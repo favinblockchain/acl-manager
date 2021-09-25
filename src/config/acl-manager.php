@@ -16,6 +16,12 @@ return [
             'permissions' => 'acl-manager-permissions'
         ]
     ],
-    'encryption' => true
+    'encryption' => [
+        'mobile_encryption' => true,
+        'email_encryption' => true,
+        'city_encryption' => true,
+        'postal_code_encryption' => true,
+        'address_encryption' => true
+    ]
 
 ];
