@@ -17,6 +17,7 @@ class ChangeUsersFields extends Migration
             $table->string('nid', 256)->change();
             $table->string('city', 256)->change();
             $table->string('postal_code', 256)->change();
+            $table->string('organization', 256)->change();
         });
     }
 
@@ -31,6 +32,7 @@ class ChangeUsersFields extends Migration
             $table->string('nid')->change();
             $table->string('city')->change();
             $table->string('postal_code', 10)->change();
+            $table->string('organization')->change();
         });
     }
 }

@@ -198,8 +198,24 @@
 
                                                 @error('postal_code')
                                                 <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="organization"><strong>نام شرکت</strong></label>
+                                                <input id="organization" type="text"
+                                                       class="form-control @error('organization') is-invalid @enderror"
+                                                       name="postal_code"
+                                                       value="{{ old( 'organization') }}"
+                                                       autocomplete="off">
+
+                                                @error('organization')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                                 @enderror
                                             </div>
                                         </div>

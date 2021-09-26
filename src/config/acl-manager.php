@@ -21,7 +21,8 @@ return [
         'email_encryption' => true,
         'city_encryption' => true,
         'postal_code_encryption' => true,
-        'address_encryption' => true
+        'address_encryption' => true,
+        'organization_encryption' => true
     ]
 
 ];
