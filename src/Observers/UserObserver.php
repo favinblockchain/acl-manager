@@ -13,7 +13,7 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function created(User $user)
+    public function creating(User $user)
     {
         UserFacade::userFieldsEncryption($user);
     }
@@ -24,7 +24,7 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function updated(User $user)
+    public function updating(User $user)
     {
         UserFacade::userFieldsEncryption($user);
     }

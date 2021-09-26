@@ -9,35 +9,30 @@ class UserRepository
         if (config('acl-manager.encryption.mobile_encryption')){
             if (decryptString($user->mobile) == 'already_decrypted'){
                 $user->mobile = encryptString($user->mobile);
-                $user->mobile_key = makeHash($user->mobile);
+                $user->mobile_key = makeHash(decryptString($user->mobile));
             }
-        }else{
-            $user->mobile = $user->mobile;
-            $user->mobile_key = 'nan';
         }
         if (config('acl-manager.encryption.email_encryption')){
-            $user->email = encryptString($user->email);
-            $user->email_key = makeHash($user->email);
-        }else{
-            $user->email = $user->email;
-            $user->email_key = 'nan';
+            if (decryptString($user->email) == 'already_decrypted'){
+                $user->email = encryptString($user->email);
+                $user->email_key = makeHash(decryptString($user->email));
+            }
         }
         if (config('acl-manager.encryption.city_encryption')){
-            $user->city = encryptString($user->city);
-        }else{
-            $user->city = $user->city;
+            if (decryptString($user->city) == 'already_decrypted'){
+                $user->city = encryptString($user->city);
+            }
         }
         if (config('acl-manager.encryption.postal_code_encryption')){
-            $user->postal_code = encryptString($user->postal_code);
-        }else{
-            $user->postal_code = $user->postal_code;
+            if (decryptString($user->postal_code) == 'already_decrypted'){
+                $user->postal_code = encryptString($user->postal_code);
+            }
         }
         if (config('acl-manager.encryption.address_encryption')){
-            $user->address = encryptString($user->address);
-        }else{
-            $user->address = $user->address;
+            if (decryptString($user->address) == 'already_decrypted'){
+                $user->address = encryptString($user->address);
+            }
         }
-        $user->saveQuietly();
     }
 
     public function userFieldsDecryption($user)
