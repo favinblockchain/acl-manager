@@ -60,6 +60,7 @@ class UserController extends Controller
     }
 
     public function userResetPasswordForm(User $user) {
+        UserFacade::userFieldsDecryption($user);
         return view('vendor.AclManager.users.user_reset_password', compact('user'));
     }
 
