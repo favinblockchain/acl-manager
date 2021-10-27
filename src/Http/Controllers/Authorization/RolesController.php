@@ -42,7 +42,7 @@ class RolesController
     {
         return View::make('vendor.AclManager.authorization.edit', [
             'model' => null,
-            'permissions' => $this->permissionModel::all(['id', 'name']),
+            'permissions' => $this->permissionModel::all(['id', 'name', 'display_name']),
             'type' => 'role',
         ]);
     }
