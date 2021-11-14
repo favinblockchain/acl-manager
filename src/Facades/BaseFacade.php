@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinarajabpour1998\Identifier\Facades;
+namespace Sinarajabpour1998\AclManager\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

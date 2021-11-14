@@ -2,7 +2,7 @@
 
 namespace Sinarajabpour1998\AclManager\Facades;
 
-use Sinarajabpour1998\Gateway\Facades\BaseFacade;
+use Sinarajabpour1998\AclManager\Facades\BaseFacade;
 
 /**
  * @class \Sinarajabpour1998\AclManager\Facades\UserFacade
