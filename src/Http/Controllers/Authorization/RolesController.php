@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Sinarajabpour1998\LogManager\Facades\LogFacade;
 
 class RolesController
 {
@@ -60,7 +61,8 @@ class RolesController
         $role = $this->rolesModel::create($data);
         $role->syncPermissions($request->get('permissions') ?? []);
 
-        Session::flash('laratrust-success', 'Role created successfully');
+        Session::flash('laratrust-success', 'نقش باموفقیت ایجاد شد.');
+        LogFacade::generateLog("create_role", $request->name);
         return redirect(route('roles.index'));
     }
 
@@ -97,7 +99,9 @@ class RolesController
         $role->update($data);
         $role->syncPermissions($request->get('permissions') ?? []);
 
-        Session::flash('laratrust-success', 'Role updated successfully');
+        Session::flash('laratrust-success', 'نقش باموفقیت ویرایش شد.');
+        LogFacade::generateLog("update_role", "Role id : " . $id);
+
         return redirect(route('roles.index'));
     }
 
@@ -108,12 +112,15 @@ class RolesController
             ->count();
 
         if ($usersAssignedToRole > 0) {
-            Session::flash('laratrust-warning', 'Role is attached to one or more users. It can not be deleted');
+            $status = 'این نقش به یک یا چند کاربر متصل است. امکان حذف آن فراهم نیست.';
+            Session::flash('laratrust-warning', $status);
         } else {
-            Session::flash('laratrust-success', 'Role deleted successfully');
+            $status = 'نقش باموفقیت حذف شد.';
+            Session::flash('laratrust-success', $status);
             $this->rolesModel::destroy($id);
+            LogFacade::generateLog("delete_role", "Role id : " . $id);
         }
 
-        return response()->json(['status' => 'با موفقیت حذف شد']);
+        return response()->json(['status' => $status]);
     }
 }

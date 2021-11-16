@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Sinarajabpour1998\LogManager\Facades\LogFacade;
 
 class PermissionsController
 {
@@ -56,7 +57,8 @@ class PermissionsController
 
         $this->permissionModel::create($data);
 
-        Session::flash('laratrust-success', 'Permission created successfully');
+        Session::flash('laratrust-success', 'دسترسی باموفقیت ایجاد شد.');
+        LogFacade::generateLog("create_permission", $request->name);
         return redirect(route('permissions.index'));
     }
 
@@ -81,7 +83,8 @@ class PermissionsController
 
         $permission->update($data);
 
-        Session::flash('laratrust-success', 'Permission updated successfully');
+        Session::flash('laratrust-success', 'دسترسی باموفقیت ویرایش شد.');
+        LogFacade::generateLog("update_permission", "Permission id : " . $id);
         return redirect(route('permissions.index'));
     }
 
@@ -92,12 +95,15 @@ class PermissionsController
             ->count();
 
         if ($usersAssignedToPermission > 0) {
-            Session::flash('laratrust-warning', 'Permission is attached to one or more users. It can not be deleted');
+            $status = 'این دسترسی به یک یا چند کاربر متصل است. امکان حذف آن فراهم نیست.';
+            Session::flash('laratrust-warning', $status);
         } else {
-            Session::flash('laratrust-success', 'Permission deleted successfully');
+            $status = 'دسترسی باموفقیت حذف شد.';
+            Session::flash('laratrust-success', $status);
             $this->permissionModel::destroy($id);
+            LogFacade::generateLog("delete_permission", "Permission id : " . $id);
         }
 
-        return response()->json(['status' => 'با موفقیت حذف شد']);
+        return response()->json(['status' => $status]);
     }
 }

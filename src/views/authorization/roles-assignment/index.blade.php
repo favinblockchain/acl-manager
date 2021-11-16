@@ -78,6 +78,7 @@
                                     @slot('thead')
                                         <tr>
                                             <th>شناسه</th>
+                                            <th>نام کاربری</th>
                                             <th>نام</th>
                                             <th>نام خانوادگی</th>
                                             <th># نقش‌ها</th>
@@ -89,6 +90,9 @@
                                             <tr>
                                                 <td>
                                                     {{$user->getKey()}}
+                                                </td>
+                                                <td>
+                                                    {{$user->username ?? '-'}}
                                                 </td>
                                                 <td>
                                                     {{$user->first_name ?? '-'}}

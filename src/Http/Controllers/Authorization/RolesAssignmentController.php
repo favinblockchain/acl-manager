@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Sinarajabpour1998\LogManager\Facades\LogFacade;
 
 class RolesAssignmentController
 {
@@ -117,6 +118,8 @@ class RolesAssignmentController
             $user->syncPermissions($request->get('permissions') ?? []);
         }
         Session()->flash('success', 'کاربر باموفقیت بروزرسانی شد.');
+        LogFacade::generateLog("update_user", "User id : " . $modelId);
+
         return redirect()->back();
     }
 }
