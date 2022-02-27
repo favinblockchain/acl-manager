@@ -1,9 +1,9 @@
 {
-    "name": "sinarajabpour1998/acl-manager",
+    "name": "favinblockchain/acl-manager",
     "type": "laravel-package",
     "description": "This package provides access control list and user manager in laravel apps.",
     "license": "MIT",
-    "homepage": "https://github.com/sinarajabpour1998/acl-manager",
+    "homepage": "https://github.com/favinblockchain/acl-manager",
     "authors": [
         {
             "name": "Sina Rajabpour",
@@ -19,13 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Sinarajabpour1998\\AclManager\\": "src/"
+            "Favinblockchain\\AclManager\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Sinarajabpour1998\\AclManager\\AclManagerServiceProvider"
+                "Favinblockchain\\AclManager\\AclManagerServiceProvider"
             ]
         }
     }

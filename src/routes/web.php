@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'namespace' => 'Sinarajabpour1998\AclManager\Http\Controllers',
+    'namespace' => 'Favinblockchain\AclManager\Http\Controllers',
     'prefix' => 'panel',
     'middleware' => ['web', 'auth', 'verified', Config::get('acl-manager.permissions.main')]
 ], function () {

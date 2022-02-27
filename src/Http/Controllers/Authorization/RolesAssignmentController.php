@@ -1,13 +1,13 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\Http\Controllers\Authorization;
+namespace Favinblockchain\AclManager\Http\Controllers\Authorization;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Sinarajabpour1998\LogManager\Facades\LogFacade;
+use Favinblockchain\LogManager\Facades\LogFacade;
 
 class RolesAssignmentController
 {

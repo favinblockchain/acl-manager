@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\View\Components;
+namespace Favinblockchain\AclManager\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

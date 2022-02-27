@@ -1,5 +1,5 @@
 <?php
-namespace Sinarajabpour1998\AclManager\Repositories;
+namespace Favinblockchain\AclManager\Repositories;
 
 class UserRepository
 {

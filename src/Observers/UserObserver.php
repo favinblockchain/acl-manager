@@ -1,9 +1,9 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\Observers;
+namespace Favinblockchain\AclManager\Observers;
 
 use App\Models\User;
-use Sinarajabpour1998\AclManager\Facades\UserFacade;
+use Favinblockchain\AclManager\Facades\UserFacade;
 
 class UserObserver
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\Facades;
+namespace Favinblockchain\AclManager\Facades;
 
-use Sinarajabpour1998\AclManager\Facades\BaseFacade;
+use Favinblockchain\AclManager\Facades\BaseFacade;
 
 /**
- * @class \Sinarajabpour1998\AclManager\Facades\UserFacade
+ * @class \Favinblockchain\AclManager\Facades\UserFacade
  *
  * @method static array userFieldsEncryption($user)
  * @method static array userFieldsDecryption($user)
  *
- * @see \Sinarajabpour1998\AclManager\Repositories\UserRepository
+ * @see \Favinblockchain\AclManager\Repositories\UserRepository
  */
 
 class UserFacade extends BaseFacade

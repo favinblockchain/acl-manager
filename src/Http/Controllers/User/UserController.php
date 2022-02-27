@@ -1,15 +1,15 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\Http\Controllers\User;
+namespace Favinblockchain\AclManager\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Sinarajabpour1998\AclManager\Facades\UserFacade;
-use Sinarajabpour1998\AclManager\Http\Requests\UserRequest;
+use Favinblockchain\AclManager\Facades\UserFacade;
+use Favinblockchain\AclManager\Http\Requests\UserRequest;
 use App\Models\Province;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use Sinarajabpour1998\LogManager\Facades\LogFacade;
+use Favinblockchain\LogManager\Facades\LogFacade;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller

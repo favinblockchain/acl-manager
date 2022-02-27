@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager\Http\Requests;
+namespace Favinblockchain\AclManager\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;

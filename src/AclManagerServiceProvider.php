@@ -1,10 +1,10 @@
 <?php
 
-namespace Sinarajabpour1998\AclManager;
+namespace Favinblockchain\AclManager;
 
-use Sinarajabpour1998\AclManager\Facades\UserFacade;
-use Sinarajabpour1998\AclManager\Repositories\UserRepository;
-use Sinarajabpour1998\AclManager\View\Components\AclMenu;
+use Favinblockchain\AclManager\Facades\UserFacade;
+use Favinblockchain\AclManager\Repositories\UserRepository;
+use Favinblockchain\AclManager\View\Components\AclMenu;
 use Illuminate\Support\ServiceProvider;
 
 class AclManagerServiceProvider extends ServiceProvider
